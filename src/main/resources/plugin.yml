@@ -1,0 +1,14 @@
+name: XxXxX
+version: 1.0
+main: pl.xxxxx.XxXxX
+api-version: '1.21'
+description: Dozorca - anonimowy opiekun serwera
+commands:
+  d1234:
+    description: Panel dozorcy
+    permission: xxxxx.dozorca
+    permission-message: "Unknown command. Type \"/help\" for help."
+permissions:
+  xxxxx.dozorca:
+    description: Rola dozorcy (niewidzialny, widzi innych dozorcow)
+    default: op
