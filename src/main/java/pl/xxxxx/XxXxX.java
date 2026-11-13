@@ -1,8 +1,12 @@
 package pl.xxxxx;
 
+import com.destroystokyo.paper.event.server.AsyncTabCompleteEvent;
 import com.destroystokyo.paper.event.server.PaperServerListPingEvent;
+import io.papermc.paper.chat.ChatRenderer;
 import io.papermc.paper.event.player.AsyncChatEvent;
-import io.papermc.paper.event.player.PlayerAdvancementDoneEvent;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -16,6 +20,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -26,11 +31,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import io.papermc.paper.event.server.AsyncTabCompleteEvent;
-import io.papermc.paper.chat.ChatRenderer;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextDecoration;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -160,8 +160,8 @@ public final class XxXxX extends JavaPlugin implements Listener {
         if (e.getSender().hasPermission(PERM)) return;
         Set<String> names = hiddenNamesLower();
         if (names.isEmpty()) return;
-        e.setCompletions(e.completions().stream()
-                .filter(c -> !names.contains(c.suggestion().toLowerCase()))
+        e.setCompletions(e.getCompletions().stream()
+                .filter(c -> !names.contains(c.toLowerCase()))
                 .toList());
     }
 
@@ -354,4 +354,4 @@ public final class XxXxX extends JavaPlugin implements Listener {
             spawn.getWorld().spawnEntity(spawn, EntityType.WITHER_SKELETON);
         }
     }
-        }
+}
